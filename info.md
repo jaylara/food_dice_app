@@ -1,2 +1,2 @@
 #What is this branch
-This branch is the staging area for us to publish a working version to master, only requests that have been verified as working copies will be merged here.
+This branch is the main merging area where all changes will be united, should something work it will be passed down to our working branch, the onto a full release.

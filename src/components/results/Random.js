@@ -11,6 +11,7 @@ export default class Random extends Component {
 
     this.handleRandom=this.handleRandom.bind(this);
     this.formatAddress=this.formatAddress.bind(this);
+    this.displayCategories=this.displayCategories.bind(this);
   }
 
   handleRandom(e){
@@ -21,11 +22,16 @@ export default class Random extends Component {
       this.setState({
         randomPick: res.data.businesses[randomIndex]
       })
-      console.log(this.state.randomPick)
+      console.log(this.state.randomPick.categories)
     })
     .catch((error)=>{
       console.log('error');
     })
+
+     // for (var i=0; i< this.state.randomPick.categories.length; i++){
+     //    console.log(this.state.randomPick.categories[i])
+     //  }
+
   }
 
     formatAddress(location){
@@ -47,6 +53,14 @@ export default class Random extends Component {
       return address
     }
 
+    displayCategories(business){
+      var categories = '';
+      for(let i of business.categories){
+        categories += i.title + ' ';
+      }
+      return categories
+    }
+
     // this.setState({
     //   randomPick: this.refs.locationseed.value
     // })
@@ -55,11 +69,17 @@ export default class Random extends Component {
     //change state to display random pick
 
 
-
   render() {
     var business = this.state.randomPick;
     var location = (business.location)?this.formatAddress(business.location): '';
-    var isOpened = business.is_closed?<span>Closed</span>:<span></span>;
+    var isOpened ='';
+    var categories = '';
+    if (business) {
+      isOpened = business.is_closed?<span>Closed</span>:<span>Opened</span>;
+      categories = this.displayCategories(business);
+      this.displayCategories(business);
+    }
+
     return (
       <div className='random-container'>
         <h1>Dont even care?</h1>
@@ -67,11 +87,13 @@ export default class Random extends Component {
         <input type='button' value='Roll The Dice' onClick={this.handleRandom}/>
         <div className='ramdomOutputContainer'>
           {business.name}<br/>
+          {categories}<br/>
           {business.price}
           <img className='randomPickImage' src={business.image_url} alt={business.name}/>
           {business.rating}<br/>
-          {location}
-          {isOpened}
+          {location}<br/>
+          {isOpened}<br/>
+
 
 
 

@@ -4,7 +4,13 @@ import './Search.css';
 export default class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: [], count: 1};
+    this.state = {
+      value: [],
+      count: 1,
+      inputs: []
+    };
+    this.axiosRequest = this.axiosRequest.bind(this);
+    this.updateArray = this.updateArray.bind(this);
   }
 
   handleChange(i, event) {
@@ -40,20 +46,29 @@ export default class Search extends Component {
      let inputFields = [];
      for(let i = 0; i < this.state.count; i++){
            inputFields.push(
-               <div id='input-form' key={i}>
-                  <input placeholder='Type of food...'type="text" value={this.state.value[i] || ''} onChange={this.handleChange.bind(this,i)} />
-               </div>
+              <div id='input-form' key={i}>
+                <input onBlur={ this.updateArray } placeholder='Type of food...' type="text" value={this.state.value[i] || ''} onChange={this.handleChange.bind(this, i)} />
+              </div>
             )
      }
      return inputFields || null;
   }
 
+  axiosRequest(e) {
+    e.preventDefault();
+
+  }
+
+  updateArray(e) {
+    this.state.inputs.push(e.target.value);
+    console.log(e.target.value);
+    console.log(this.state.inputs);
+  }
   render() {
     return (
       <div>
-
         <h1 className="header">What are you craving?</h1>
-        <form>
+        <form onSubmit={ this.axiosRequest }>
           {this.createUI()}
           <div id='add-remove-buttons'>
             <input id='add-input' type='button' value='+' onClick={this.addClick.bind(this)}/>

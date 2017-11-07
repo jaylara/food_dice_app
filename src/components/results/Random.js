@@ -10,6 +10,7 @@ export default class Random extends Component {
     }
 
     this.handleRandom=this.handleRandom.bind(this);
+    this.formatAddress=this.formatAddress.bind(this);
   }
 
   handleRandom(e){
@@ -18,13 +19,33 @@ export default class Random extends Component {
     .then((res) => {
       let randomIndex = Math.floor(Math.random()*20)
       this.setState({
-        randomPick: res.data.businesses[randomIndex].name
+        randomPick: res.data.businesses[randomIndex]
       })
-      console.log(res.data.businesses)
+      console.log(this.state.randomPick)
     })
     .catch((error)=>{
       console.log('error');
     })
+  }
+
+    formatAddress(location){
+      var address = '';
+      if (location.address1){
+        address += location.address1;
+      } if (location.address2){
+        address += location.address2;
+      } if (location.address3){
+        address += location.address3;
+      }
+      if (location.city){
+        address += ', '+location.city;
+      } if (location.state){
+        address += ', '+location.state;
+      } if (location.zip_code){
+        address += ' '+location.zip_code;
+      }
+      return address
+    }
 
     // this.setState({
     //   randomPick: this.refs.locationseed.value
@@ -33,16 +54,27 @@ export default class Random extends Component {
     //do axios call to Yelp API
     //change state to display random pick
 
-  }
+
 
   render() {
+    var business = this.state.randomPick;
+    var location = (business.location)?this.formatAddress(business.location): '';
+    var isOpened = business.is_closed?<span>Closed</span>:<span></span>;
     return (
       <div className='random-container'>
         <h1>Dont even care?</h1>
         <input type='text' placeholder='City and State OR Zipcode' ref='locationseed'/>
         <input type='button' value='Roll The Dice' onClick={this.handleRandom}/>
         <div className='ramdomOutputContainer'>
-          {this.state.randomPick}
+          {business.name}<br/>
+          {business.price}
+          <img className='randomPickImage' src={business.image_url} alt={business.name}/>
+          {business.rating}<br/>
+          {location}
+          {isOpened}
+
+
+
         </div>
       </div>
     )

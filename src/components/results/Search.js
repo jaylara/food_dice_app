@@ -10,7 +10,8 @@ export default class Search extends Component {
       count: 1,
       hasSearched: false,
       inputs: [],
-      data:[]
+      data:[],
+      hi:[]
     };
 
     this.access = {
@@ -79,9 +80,10 @@ export default class Search extends Component {
       }
     }).then((response)=>{
       // console.log(response.data.businesses);
-      this.setState({
-        data: response.data.businesses
-      })
+      // this.setState({
+      //   data: response.data.businesses
+      // })
+      this.prepData(response);
     }).catch(e => e);
   }
 
@@ -92,19 +94,22 @@ export default class Search extends Component {
     })
 
     for (let i of this.state.inputs) {
-      console.log(i);
       this.axiosRequest(i);
     }
   }
 
   updateArray(e) {
     this.state.inputs.push(e.target.value);
-    console.log(e.target.value);
-    console.log(this.state.inputs);
   }
 
-  prepData() {
-    console.log(this.state.data);
+  prepData(data) {
+    console.log(data.data.businesses[0].name);
+    console.log(data.data.businesses[0].image_url);
+    console.log(data.data.businesses[0].location);
+    this.setState ({
+      data: data.data.businesses[0]
+    })
+    console.log(typeof(this.state.hi));
   }
 
   render() {
@@ -126,7 +131,8 @@ export default class Search extends Component {
         :
         display = (
           <div>
-            { this.prepData() }
+            <p>{this.state.data.name}</p>
+            <img src={this.state.data.image_url} />
           </div>
           )
     return (

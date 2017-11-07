@@ -16,9 +16,11 @@ export default class Random extends Component {
     console.log(this.refs.locationseed.value);
     axios.get('https://yelpprox.herokuapp.com/search?location=' + this.refs.locationseed.value)
     .then((res) => {
+      let randomIndex = Math.floor(Math.random()*20)
       this.setState({
-        randomPick: res.data.businesses[0].name
+        randomPick: res.data.businesses[randomIndex].name
       })
+      console.log(res.data.businesses)
     })
     .catch((error)=>{
       console.log('error');

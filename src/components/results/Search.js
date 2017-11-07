@@ -22,6 +22,8 @@ export default class Search extends Component {
       token_type: "Bearer"
     }
 
+    this.imgComp = '';
+
     this.prepData = this.prepData.bind(this);
     this.prepareQuery = this.prepareQuery.bind(this);
     this.axiosRequest = this.axiosRequest.bind(this);
@@ -60,11 +62,11 @@ export default class Search extends Component {
   createUI(){
      let inputFields = [];
      for(let i = 0; i < this.state.count; i++){
-           inputFields.push(
-              <div id='input-form' key={i}>
-                <input onBlur={ this.updateArray } placeholder='Type of food...' type="text" value={this.state.value[i] || ''} onChange={this.handleChange.bind(this, i)} />
-              </div>
-            )
+       inputFields.push(
+          <div id='input-form' key={i}>
+            <input onBlur={ this.updateArray } placeholder='Type of food...' type="text" value={this.state.value[i] || ''} onChange={this.handleChange.bind(this, i)} />
+          </div>
+        )
      }
      return inputFields || null;
   }
@@ -79,12 +81,13 @@ export default class Search extends Component {
         'Authorization': 'Bearer ' + this.access.access_token,
       }
     }).then((response)=>{
-      // console.log(response.data.businesses);
-      // this.setState({
-      //   data: response.data.businesses
-      // })
       this.prepData(response);
+      this.myFunction(response);
     }).catch(e => e);
+  }
+
+  myFunction(response) {
+    console.log(response);
   }
 
   prepareQuery(e) {
@@ -106,10 +109,11 @@ export default class Search extends Component {
     console.log(data.data.businesses[0].name);
     console.log(data.data.businesses[0].image_url);
     console.log(data.data.businesses[0].location);
+
     this.setState ({
       data: data.data.businesses[0]
     })
-    console.log(typeof(this.state.hi));
+
   }
 
   render() {
@@ -130,8 +134,8 @@ export default class Search extends Component {
         </div>)
         :
         display = (
-          <div>
-            <p>{this.state.data.name}</p>
+          <div className="render-results">
+            <p className="results-name">{this.state.data.name}</p>
             <img src={this.state.data.image_url} />
           </div>
           )

@@ -9,7 +9,9 @@ export default class Search extends Component {
       count: 1,
       hasSearched: false,
       inputs: [],
-      data:[]
+      data:[],
+      testCount: 0,
+      ayy: null
     };
 
     this.access = {
@@ -21,12 +23,14 @@ export default class Search extends Component {
     }
 
     this.imgComp = '';
-    this.saveData = [];
+    this.saveData = {};
+    this.stuff= null;
 
     this.prepData = this.prepData.bind(this);
     this.prepareQuery = this.prepareQuery.bind(this);
     this.axiosRequest = this.axiosRequest.bind(this);
     this.updateArray = this.updateArray.bind(this);
+    this.makeMyObject = this.makeMyObject.bind(this);
   }
 
   handleChange(i, event) {
@@ -89,6 +93,8 @@ export default class Search extends Component {
     for (let i of this.state.inputs) {
       this.axiosRequest(i);
     }
+
+    console.log(this.saveData, 'im logging after all axios requests');
   }
 
   updateArray(e) {
@@ -100,16 +106,12 @@ export default class Search extends Component {
     console.log(data.data.businesses, 'prepdata function')
 
     this.makeMyObject(data.data.businesses);
-    this.setState({
-      hasSearched: true
-    })
-    // this.data.push(data.data.businesses);
-    // console.log(data.data.businesses[0].name);
-    // console.log(data.data.businesses[0].image_url);
-    // console.log(data.data.businesses[0].location);
 
-    // this.state.data.push(data.data.businesses);
-    // console.log(this.state.data, 'test');
+
+  }
+
+  createMyName(){
+     // console.log(this.saveData);
   }
 
   // componentWillMount() {
@@ -117,13 +119,37 @@ export default class Search extends Component {
   // }
 
   makeMyObject(businesses) {
-    this.saveData.push(businesses);
-    console.log(this.saveData, 'save data');
+    console.log(businesses);
+
+    for(let i of businesses){
+      this.setState({
+        hasSearched: true,
+        data: this.state.data.concat([i])
+      })
+    }
+    console.log(this.state.data, 'im your data after looping through search')
+    console.log(this.state.data[0]);
+    // console.log(this.savedData);
+    let fuck  = this.makeMyChild();
+    this.setState({
+      ayy: fuck
+    })
+    console.log(this.stuff);
+  }
+  makeMyChild(){
+    let ayy = '';
+    for(let x of this.state.data){
+      ayy+= '1';
+    }
+
+    return ayy;
   }
 
   render() {
     let display;
     let resultDisplay = this.saveData;
+
+    let omg = this.createMyName();
     !this.state.hasSearched?
       display = (
         <div>
@@ -141,9 +167,13 @@ export default class Search extends Component {
         display = (
           <div className="render-results">
             <h1>Search Results</h1>
-{/*            <p className="results-name">{ resultDisplay }</p>
-*/}{/*            <img src={this.saveData[0]} />
-*/}            <p>I am your results page</p>
+ {/*                       <p className="results-name">{ resultDisplay }</p>
+            <img src={this.saveData[0]} />*/}
+            <p>I am your results page</p>
+            <p>How many stuffs i found in unary: {this.state.ayy}</p>
+            <p>This is the name of the first restaurant: {this.state.data[0].name}</p>
+            <p>Am I open?: {this.state.data[0].is_closed ? 'closed' : 'open'}</p>
+            <img src={this.state.data[0].image_url}/>
           </div>
           )
     return (

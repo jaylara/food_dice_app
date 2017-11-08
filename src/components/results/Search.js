@@ -86,10 +86,6 @@ export default class Search extends Component {
 
   prepareQuery(e) {
     e.preventDefault();
-    // this.setState({
-    //   hasSearched: true
-    // })
-
     for (let i of this.state.inputs) {
       this.axiosRequest(i);
     }
@@ -102,21 +98,9 @@ export default class Search extends Component {
   }
 
   prepData(data) {
-
     console.log(data.data.businesses, 'prepdata function')
-
     this.makeMyObject(data.data.businesses);
-
-
   }
-
-  createMyName(){
-     // console.log(this.saveData);
-  }
-
-  // componentWillMount() {
-  //   alert("Updating");
-  // }
 
   makeMyObject(businesses) {
     console.log(businesses);
@@ -141,11 +125,12 @@ export default class Search extends Component {
     let resultDivs = [];
     for(let i = 0; i < this.state.data.length ; i++) {
       resultDivs.push(
-        <div id='result-listed' key={ i }>
-          <img src={ this.state.data[i].image_url } />
-          <h1>{ this.state.data[i].name }</h1>
-          <p>{ this.state.data[i].is_closed ? 'closed' : 'open' }</p>
-          <p>{ this.state.data[i].location.display_address }</p>
+        <div id='result-container' key={ i }>
+          <img className="image"src={ this.state.data[i].image_url } />
+          <p className="business-name">{ this.state.data[i].name }</p>
+          <p className="open-closed">{ this.state.data[i].is_closed ? 'closed' : 'open' }</p>
+          <p className="business-name">{ this.state.data[i].phone }</p>
+          <p className="address">{ this.state.data[i].location.display_address }</p>
         </div>
         )
     }
@@ -168,10 +153,7 @@ shuffle(a) {
 
   render() {
     let display;
-    let resultDisplay = this.saveData;
-
-    let omg = this.createMyName();
-    !this.state.hasSearched?
+    let resultsDisplay;
       display = (
         <div>
           <h1 className="header">What are you craving?</h1>
@@ -184,24 +166,19 @@ shuffle(a) {
             </div>
             <input id='submit-cravings' type="submit" value="Submit" />
           </form>
-        </div>)
-        :
-        display = (
-          <div className="render-results">
-            <h1>Search Results</h1>
-            {this.makeMyChild()}
- {/*                       <p className="results-name">{ resultDisplay }</p>
-            <img src={this.saveData[0]} />*/}
-            <p>I am your results page</p>
-            <p>How many stuffs i found in unary: {this.state.ayy}</p>
-            <p>This is the name of the first restaurant: {this.state.data[0].name}</p>
-            <p>Am I open?: {this.state.data[0].is_closed ? 'closed' : 'open'}</p>
-            <img src={this.state.data[0].image_url}/>
-          </div>
-          )
+        </div>
+        )
+
+       resultsDisplay = (
+        <div className="render-results">
+          {this.makeMyChild()}
+        </div>
+        )
+
     return (
       <div>
         {display}
+        {resultsDisplay}
       </div>
     );
   }

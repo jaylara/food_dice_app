@@ -10,6 +10,7 @@ import Random from '../results/Random';
 import Search from '../results/Search';
 import Login from './Login';
 import Header from '../common/Header';
+import ResultForm from '../results/ResultForm.js';
 
 export default class Home extends Component {
   render() {

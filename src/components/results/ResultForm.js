@@ -9,7 +9,8 @@ export default class Search extends Component {
       count: 1,
       hasSearched: false,
       inputs: [],
-      data:[]
+      data:[],
+      hi:[]
     };
 
     this.access = {
@@ -72,19 +73,23 @@ export default class Search extends Component {
 
   axiosRequest(foodTerm) {
     let limit = 3;
-    let url = `https://yelpprox.herokuapp.com/search?term=${foodTerm}&limit=${limit}&location=austin`;
+    let url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${ foodTerm }&location=austin&limit=${ limit }`;
 
-    axios.get(url)
-    .then((response) => {
+    axios.get(url,{
+      //params
+      'headers': {
+        'Authorization': 'Bearer ' + this.access.access_token,
+      }
+    }).then((response) => {
       this.prepData(response);
     }).catch(e => e);
   }
 
   prepareQuery(e) {
     e.preventDefault();
-    // this.setState({
-    //   hasSearched: true
-    // })
+    this.setState({
+      hasSearched: true
+    })
 
     for (let i of this.state.inputs) {
       this.axiosRequest(i);
@@ -96,13 +101,10 @@ export default class Search extends Component {
   }
 
   prepData(data) {
-
-    console.log(data.data.businesses, 'prepdata function')
+    console.log(data.data.businesses[0].name, 'prepdata function')
 
     this.makeMyObject(data.data.businesses);
-    this.setState({
-      hasSearched: true
-    })
+
     // this.data.push(data.data.businesses);
     // console.log(data.data.businesses[0].name);
     // console.log(data.data.businesses[0].image_url);
@@ -112,9 +114,9 @@ export default class Search extends Component {
     // console.log(this.state.data, 'test');
   }
 
-  // componentWillMount() {
-  //   alert("Updating");
-  // }
+  componentWillMount() {
+    alert("Updating");
+  }
 
   makeMyObject(businesses) {
     this.saveData.push(businesses);
@@ -141,9 +143,9 @@ export default class Search extends Component {
         display = (
           <div className="render-results">
             <h1>Search Results</h1>
-{/*            <p className="results-name">{ resultDisplay }</p>
-*/}{/*            <img src={this.saveData[0]} />
-*/}            <p>I am your results page</p>
+            <p className="results-name">{ resultDisplay }</p>
+            <img src={this.state.data.image_url} />
+            <p>I am your results page</p>
           </div>
           )
     return (

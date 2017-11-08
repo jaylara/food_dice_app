@@ -76,27 +76,61 @@ export default class Random extends Component {
     var location = '';
     var isOpened ='';
     var categories = '';
+    var ramdomOutputContainer = {}, ramdomBusinessTitle;
     if (business) {
       location = (business.location)?this.formatAddress(business.location): '';
       isOpened = business.is_closed?<span>Closed</span>:<span>Opened</span>;
       categories = this.displayCategories(business);
+      ramdomOutputContainer = {
+          color: 'white',
+          backgroundImage: 'url(' + business.image_url + ')',
+          WebkitTransition: 'all', // note the capital 'W' here
+          msTransition: 'all', // 'ms' is the only lowercase vendor prefix
+          height: '500px',
+          width: '75%',
+          overflow: 'hidden',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+
+          boxShadow: '1px 1px 2px #01579B'
+          };
+      ramdomBusinessTitle = {
+        display: 'flex',
+        justifyContent: 'space-between',
+        backgroundColor: 'rgba(0,0,0,0.75)',
+        padding: '3px 10px',
+
+        textShadow: '1px 1px 2px #01579B'
+      };
       this.displayCategories(business);
     }
+
 
     return (
       <div className='random-container'>
         <h1>Dont even care?</h1>
         <input type='text' placeholder='City and State OR Zipcode' ref='locationseed'/>
         <input type='button' value='Roll The Dice' onClick={this.handleRandom}/>
-        <div className='ramdomOutputContainer'>
-          {business.name}<br/>
-          {categories}<br/>
-          {business.price}<br/>
-          <img className='randomPickImage' src={business.image_url} alt={business.name}/><br/>
-          {business.rating}<br/>
-          {location}<br/>
-          {business.phone}<br/>
-          {isOpened}<br/>
+        <div style={ramdomOutputContainer}>
+          <div style={ramdomBusinessTitle}>
+            <a href={business.url} target="_blank" title={business.name}><h1>{business.name}</h1></a>
+            <div>
+              <h3>{business.price}</h3>
+              <h3>{business.rating}</h3>
+            </div>
+          </div>
+
+          <div style={ramdomBusinessTitle}>
+            <p>{categories}</p>
+            <p>{business.rating}</p>
+            <p>{location}</p>
+            <p>{business.phone}</p>
+            <p>{isOpened}</p>
+          </div>
         </div>
       </div>
     )

@@ -12,6 +12,7 @@ export default class Random extends Component {
     this.handleRandom=this.handleRandom.bind(this);
     this.formatAddress=this.formatAddress.bind(this);
     this.displayCategories=this.displayCategories.bind(this);
+    this.formatPhoneNumber=this.formatPhoneNumber.bind(this);
   }
 
 
@@ -63,6 +64,21 @@ export default class Random extends Component {
       return categories
     }
 
+    formatPhoneNumber(phonenum) {
+        var newNumber = /^(?:\+?1[-. ]?)?(?:\(?([0-9]{3})\)?[-. ]?)?([0-9]{3})[-. ]?([0-9]{4})$/;
+        if (newNumber.test(phonenum)) {
+            var parts = phonenum.match(newNumber);
+            var phone = "";
+            if (parts[1]) { phone += "(" + parts[1] + ") "; }
+            phone += parts[2] + "-" + parts[3];
+            return phone;
+        }
+        else {
+            //invalid phone number
+            return phonenum;
+        }
+    }
+
     // this.setState({
     //   randomPick: this.refs.locationseed.value
     // })
@@ -76,11 +92,13 @@ export default class Random extends Component {
     var location = '';
     var isOpened ='';
     var categories = '';
+    var phonenum = '';
     var ramdomOutputContainer = {}, ramdomBusinessTitle;
     if (business) {
       location = (business.location)?this.formatAddress(business.location): '';
       isOpened = business.is_closed?<span>Closed</span>:<span>Opened</span>;
       categories = this.displayCategories(business);
+      phonenum = (business.phone)?this.formatPhoneNumber(business.phone):'';
       ramdomOutputContainer = {
           color: 'white',
           backgroundImage: 'url(' + business.image_url + ')',
@@ -110,6 +128,8 @@ export default class Random extends Component {
     }
 
 
+
+
     return (
       <div className='random-container'>
         <h1>Dont even care?</h1>
@@ -126,9 +146,9 @@ export default class Random extends Component {
 
           <div style={ramdomBusinessTitle}>
             <p>{categories}</p>
-            <p>{business.rating}</p>
             <p>{location}</p>
-            <p>{business.phone}</p>
+            <p>{phonenum}</p>
+
             <p>{isOpened}</p>
           </div>
         </div>

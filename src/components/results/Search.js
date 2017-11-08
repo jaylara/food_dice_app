@@ -11,7 +11,7 @@ export default class Search extends Component {
       inputs: [],
       data:[],
       testCount: 0,
-      ayy: null
+      myCity: null
     };
 
     this.access = {
@@ -76,7 +76,7 @@ export default class Search extends Component {
 
   axiosRequest(foodTerm) {
     let limit = 3;
-    let url = `https://yelpprox.herokuapp.com/search?term=${foodTerm}&limit=${limit}&location=austin`;
+    let url = `https://yelpprox.herokuapp.com/search?term=${ foodTerm }&limit=${ limit }&location=${ this.state.myCity }`;
 
     axios.get(url)
     .then((response) => {
@@ -139,7 +139,7 @@ export default class Search extends Component {
 
   makeMyChild(){
     let resultDivs = [];
-    for(let i = 0; i < this.state.data.length; i++) {
+    for(let i = 0; i < this.state.data.length ; i++) {
       resultDivs.push(
         <div id='result-listed' key={ i }>
           <img src={ this.state.data[i].image_url } />
@@ -149,8 +149,22 @@ export default class Search extends Component {
         </div>
         )
     }
+    let rand = this.shuffle(resultDivs);
+    console.log(rand);
+    resultDivs = rand.slice(0,3);
+
     return resultDivs || null;
 }
+
+shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+
+    return a;
+}
+
 
   render() {
     let display;
@@ -161,6 +175,7 @@ export default class Search extends Component {
       display = (
         <div>
           <h1 className="header">What are you craving?</h1>
+          <input placeholder='City or zip code...' onBlur={(e) => this.setState({ myCity: e.target.value })} />
           <form onSubmit={ this.prepareQuery }>
             {this.createUI()}
             <div id='add-remove-buttons'>

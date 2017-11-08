@@ -10,8 +10,7 @@ export default class Search extends Component {
       hasSearched: false,
       inputs: [],
       data:[],
-      testCount: 0,
-      ayy: null
+      hi:[]
     };
 
     this.access = {
@@ -23,14 +22,12 @@ export default class Search extends Component {
     }
 
     this.imgComp = '';
-    this.saveData = {};
-    this.stuff= null;
+    this.saveData = [];
 
     this.prepData = this.prepData.bind(this);
     this.prepareQuery = this.prepareQuery.bind(this);
     this.axiosRequest = this.axiosRequest.bind(this);
     this.updateArray = this.updateArray.bind(this);
-    this.makeMyObject = this.makeMyObject.bind(this);
   }
 
   handleChange(i, event) {
@@ -76,25 +73,27 @@ export default class Search extends Component {
 
   axiosRequest(foodTerm) {
     let limit = 3;
-    let url = `https://yelpprox.herokuapp.com/search?term=${foodTerm}&limit=${limit}&location=austin`;
+    let url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${ foodTerm }&location=austin&limit=${ limit }`;
 
-    axios.get(url)
-    .then((response) => {
+    axios.get(url,{
+      //params
+      'headers': {
+        'Authorization': 'Bearer ' + this.access.access_token,
+      }
+    }).then((response) => {
       this.prepData(response);
     }).catch(e => e);
   }
 
   prepareQuery(e) {
     e.preventDefault();
-    // this.setState({
-    //   hasSearched: true
-    // })
+    this.setState({
+      hasSearched: true
+    })
 
     for (let i of this.state.inputs) {
       this.axiosRequest(i);
     }
-
-    console.log(this.saveData, 'im logging after all axios requests');
   }
 
   updateArray(e) {
@@ -102,61 +101,31 @@ export default class Search extends Component {
   }
 
   prepData(data) {
-
-    console.log(data.data.businesses, 'prepdata function')
+    console.log(data.data.businesses[0].name, 'prepdata function')
 
     this.makeMyObject(data.data.businesses);
 
+    // this.data.push(data.data.businesses);
+    // console.log(data.data.businesses[0].name);
+    // console.log(data.data.businesses[0].image_url);
+    // console.log(data.data.businesses[0].location);
 
+    // this.state.data.push(data.data.businesses);
+    // console.log(this.state.data, 'test');
   }
 
-  createMyName(){
-     // console.log(this.saveData);
+  componentWillMount() {
+    alert("Updating");
   }
-
-  // componentWillMount() {
-  //   alert("Updating");
-  // }
 
   makeMyObject(businesses) {
-    console.log(businesses);
-
-    for(let i of businesses){
-      this.setState({
-        hasSearched: true,
-        data: this.state.data.concat([i])
-      })
-    }
-    console.log(this.state.data, 'im your data after looping through search')
-    console.log(this.state.data[0]);
-    // console.log(this.savedData);
-    // let fuck  = this.makeMyChild();
-    // this.setState({
-    //   ayy: fuck
-    // })
-    console.log(this.stuff);
+    this.saveData.push(businesses);
+    console.log(this.saveData, 'save data');
   }
-
-  makeMyChild(){
-    let resultDivs = [];
-    for(let i = 0; i < this.state.data.length; i++) {
-      resultDivs.push(
-        <div id='result-listed' key={ i }>
-          <img src={ this.state.data[i].image_url } />
-          <h1>{ this.state.data[i].name }</h1>
-          <p>{ this.state.data[i].is_closed ? 'closed' : 'open' }</p>
-          <p>{ this.state.data[i].location.display_address }</p>
-        </div>
-        )
-    }
-    return resultDivs || null;
-}
 
   render() {
     let display;
     let resultDisplay = this.saveData;
-
-    let omg = this.createMyName();
     !this.state.hasSearched?
       display = (
         <div>
@@ -174,14 +143,9 @@ export default class Search extends Component {
         display = (
           <div className="render-results">
             <h1>Search Results</h1>
-            {this.makeMyChild()}
- {/*                       <p className="results-name">{ resultDisplay }</p>
-            <img src={this.saveData[0]} />*/}
+            <p className="results-name">{ resultDisplay }</p>
+            <img src={this.state.data.image_url} />
             <p>I am your results page</p>
-            <p>How many stuffs i found in unary: {this.state.ayy}</p>
-            <p>This is the name of the first restaurant: {this.state.data[0].name}</p>
-            <p>Am I open?: {this.state.data[0].is_closed ? 'closed' : 'open'}</p>
-            <img src={this.state.data[0].image_url}/>
           </div>
           )
     return (

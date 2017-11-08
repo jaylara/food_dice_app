@@ -130,20 +130,27 @@ export default class Search extends Component {
     console.log(this.state.data, 'im your data after looping through search')
     console.log(this.state.data[0]);
     // console.log(this.savedData);
-    let fuck  = this.makeMyChild();
-    this.setState({
-      ayy: fuck
-    })
+    // let fuck  = this.makeMyChild();
+    // this.setState({
+    //   ayy: fuck
+    // })
     console.log(this.stuff);
   }
-  makeMyChild(){
-    let ayy = '';
-    for(let x of this.state.data){
-      ayy+= '1';
-    }
 
-    return ayy;
-  }
+  makeMyChild(){
+    let resultDivs = [];
+    for(let i = 0; i < this.state.data.length; i++) {
+      resultDivs.push(
+        <div id='result-listed' key={ i }>
+          <img src={ this.state.data[i].image_url } />
+          <h1>{ this.state.data[i].name }</h1>
+          <p>{ this.state.data[i].is_closed ? 'closed' : 'open' }</p>
+          <p>{ this.state.data[i].location.display_address }</p>
+        </div>
+        )
+    }
+    return resultDivs || null;
+}
 
   render() {
     let display;
@@ -167,6 +174,7 @@ export default class Search extends Component {
         display = (
           <div className="render-results">
             <h1>Search Results</h1>
+            {this.makeMyChild()}
  {/*                       <p className="results-name">{ resultDisplay }</p>
             <img src={this.saveData[0]} />*/}
             <p>I am your results page</p>

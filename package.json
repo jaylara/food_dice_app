@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CescoIV/food_dice.git"
+    "url": "git+https://github.com/jaylara/food_dice_app.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/CescoIV/food_dice/issues"
+    "url": "https://github.com/jaylara/food_dice_app/issues"
   },
-  "homepage": "https://github.com/CescoIV/food_dice#readme",
+  "homepage": "https://github.com/jaylara/food_dice_app#readme",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

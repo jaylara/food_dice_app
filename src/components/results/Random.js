@@ -100,6 +100,7 @@ export default class Random extends Component {
       categories = this.displayCategories(business);
       phonenum = (business.phone)?this.formatPhoneNumber(business.phone):'';
       ramdomOutputContainer = {
+          margin: 'auto',
           color: 'white',
           backgroundImage: 'url(' + business.image_url + ')',
           WebkitTransition: 'all', // note the capital 'W' here

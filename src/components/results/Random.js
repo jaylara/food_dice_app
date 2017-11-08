@@ -18,13 +18,14 @@ export default class Random extends Component {
 
 
   handleRandom(e){
+    (e).preventDefault();
     console.log(this.refs.locationseed.value);
     let idLength = 50;
-    axios.get(`https://yelpprox.herokuapp.com/search?limit=${idLength}&location=` + this.refs.locationseed.value)
+    axios.get(`https://yelpprox.herokuapp.com/search?term=restaurant&limit=${idLength}&location=` + this.refs.locationseed.value)
     .then((res) => {
       //check each business' categories
       //remove businesses that
-
+      idLength = res.data.businesses.length
       let randomIndex = Math.floor(Math.random()*idLength)
       this.setState({
         randomPick: res.data.businesses[randomIndex]

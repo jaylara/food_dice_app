@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import './reset.css';
 import { BrowserRouter as Router, Route, Link, NavLink, Switch } from 'react-router-dom';
-
 import './Search.css';
 import axios from 'axios';
+
 export default class Search extends Component {
   constructor(props) {
     super(props);
@@ -12,8 +13,7 @@ export default class Search extends Component {
       hasSearched: false,
       inputs: [],
       data:[],
-      testCount: 0,
-      ayy: null
+      myCity: null
     };
 
     this.access = {
@@ -24,8 +24,6 @@ export default class Search extends Component {
       token_type: "Bearer"
     }
 
-    this.imgComp = '';
-    this.saveData = {};
     this.stuff= null;
 
     this.prepData = this.prepData.bind(this);
@@ -68,8 +66,8 @@ export default class Search extends Component {
      let inputFields = [];
      for(let i = 0; i < this.state.count; i++){
        inputFields.push(
-          <div id='input-form' key={i}>
-            <input onBlur={ this.updateArray } placeholder='Type of food...' type="text" value={this.state.value[i] || ''} onChange={this.handleChange.bind(this, i)} />
+          <div id='input-form' key={ i }>
+            <input onBlur={ this.updateArray } placeholder='Food type' type="text" value={ this.state.value[i] || '' } onChange={ this.handleChange.bind(this, i) }/>
           </div>
         )
      }
@@ -78,7 +76,7 @@ export default class Search extends Component {
 
   axiosRequest(foodTerm) {
     let limit = 3;
-    let url = `https://yelpprox.herokuapp.com/search?term=${foodTerm}&limit=${limit}&location=austin`;
+    let url = `https://yelpprox.herokuapp.com/search?term=${ foodTerm }&limit=${ limit }&location=${ this.state.myCity }`;
 
     axios.get(url)
     .then((response) => {
@@ -88,15 +86,15 @@ export default class Search extends Component {
 
   prepareQuery(e) {
     e.preventDefault();
-    // this.setState({
-    //   hasSearched: true
-    // })
 
     for (let i of this.state.inputs) {
       this.axiosRequest(i);
     }
 
-    console.log(this.saveData, 'im logging after all axios requests');
+    this.setState({
+      inputs: [],
+      data: []
+    })
   }
 
   updateArray(e) {
@@ -104,24 +102,10 @@ export default class Search extends Component {
   }
 
   prepData(data) {
-
-    console.log(data.data.businesses, 'prepdata function')
-
     this.makeMyObject(data.data.businesses);
-
-
   }
-
-  createMyName(){
-     // console.log(this.saveData);
-  }
-
-  // componentWillMount() {
-  //   alert("Updating");
-  // }
 
   makeMyObject(businesses) {
-    console.log(businesses);
 
     for(let i of businesses){
       this.setState({
@@ -129,38 +113,46 @@ export default class Search extends Component {
         data: this.state.data.concat([i])
       })
     }
-    console.log(this.state.data, 'im your data after looping through search')
-    console.log(this.state.data[0]);
-    // console.log(this.savedData);
-    // let fuck  = this.makeMyChild();
-    // this.setState({
-    //   ayy: fuck
-    // })
-    console.log(this.stuff);
   }
 
   makeMyChild(){
     let resultDivs = [];
-    for(let i = 0; i < this.state.data.length; i++) {
+    for(let i = 0; i < this.state.data.length ; i++) {
       resultDivs.push(
-        <div id='result-listed' key={ i }>
-          <img src={ this.state.data[i].image_url } />
-          <h1>{ this.state.data[i].name }</h1>
-          <p>{ this.state.data[i].is_closed ? 'closed' : 'open' }</p>
-          <p>{ this.state.data[i].location.display_address }</p>
+        <div id='result-container' key={ i }>
+          <img className="image"src={ this.state.data[i].image_url } />
+          <div id="info-div">
+            <p className="business-name">{ this.state.data[i].name }</p>
+            <p className="open-closed">{ this.state.data[i].is_closed ? 'closed' : 'open' }</p>
+            <p className="business-name">{ this.state.data[i].phone }</p>
+            <p className="address">{ this.state.data[i].location.display_address }</p>
+          </div>
         </div>
-        )
+      )
     }
+
+    let rand = this.shuffle(resultDivs);
+    resultDivs = rand.slice(0,3);
+
     return resultDivs || null;
 }
 
+shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+
+    return a;
+}
+
+
   render() {
     let display;
-    let resultDisplay = this.saveData;
-
-    let omg = this.createMyName();
-    !this.state.hasSearched?
+    let resultsDisplay;
       display = (
+        <div className="input-area">
+
         <div>
         <div className='searchTypeLinks test9'>
           <ul className='searchTypeLinksList'>
@@ -169,32 +161,38 @@ export default class Search extends Component {
           </ul>
         </div>
           <h1 className="header">What are you craving?</h1>
-          <form onSubmit={ this.prepareQuery }>
-            {this.createUI()}
-            <div id='add-remove-buttons'>
-              <input id='add-input' type='button' value='+' onClick={this.addClick.bind(this)}/>
-              <input id='remove-input' type='button' value='-' onClick={this.removeClick.bind(this)} />
+          <div className="form-container">
+            <div id="another-div">
+              <input className="zip-code" placeholder='City or Zip' onBlur={(e) => this.setState({ myCity: e.target.value })} />
+              <div className="forms">
+                <div id="food-inputs">
+                  {this.createUI()}
+                </div>
+              </div>
             </div>
-            <input id='submit-cravings' type="submit" value="Submit" />
-          </form>
-        </div>)
-        :
-        display = (
-          <div className="render-results">
-            <h1>Search Results</h1>
-            {this.makeMyChild()}
- {/*                       <p className="results-name">{ resultDisplay }</p>
-            <img src={this.saveData[0]} />*/}
-            <p>I am your results page</p>
-            <p>How many stuffs i found in unary: {this.state.ayy}</p>
-            <p>This is the name of the first restaurant: {this.state.data[0].name}</p>
-            <p>Am I open?: {this.state.data[0].is_closed ? 'closed' : 'open'}</p>
-            <img src={this.state.data[0].image_url}/>
+            <form onSubmit={ this.prepareQuery }>
+              <div id='add-remove-buttons'>
+                <input id='add-input' type='button' value='+' onClick={this.addClick.bind(this)}/>
+                <input id='remove-input' type='button' value='-' onClick={this.removeClick.bind(this)} />
+              </div>
+              <input id='submit-cravings' type="submit" value="Submit" />
+            </form>
           </div>
-          )
+        </div>
+        </div>
+
+        )
+
+       resultsDisplay = (
+        <div className="render-results">
+          {this.makeMyChild()}
+        </div>
+        )
+
     return (
       <div>
         {display}
+        {resultsDisplay}
       </div>
     );
   }

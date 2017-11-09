@@ -4,7 +4,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Link, NavLink, Switch } from 'react-router-dom';
 import Header from '../common/Header';
 import Search from '../results/Search';
-import './Random.css';
+// import './Random.css';
 
 
 export default class Random extends Component {

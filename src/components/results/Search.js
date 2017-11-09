@@ -183,6 +183,7 @@ shuffle(a) {
             </form>
           </div>
         </div>
+        </div>
 
         )
 
@@ -194,7 +195,7 @@ shuffle(a) {
 
     return (
       <div>
-        {display}
+        <div>{display}</div>
         {resultsDisplay}
       </div>
     );

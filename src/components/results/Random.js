@@ -3,6 +3,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Link, NavLink, Switch } from 'react-router-dom';
 import Header from '../common/Header';
 import Search from '../results/Search';
+import './Random.css';
 
 export default class Random extends Component {
   constructor(props) {
@@ -138,27 +139,34 @@ export default class Random extends Component {
     return (
      <div>
 
-       <div className='random-container'>
+       <div className='random-container-main'>
+        <div className='searchTypeLinks'>
+          <ul className='searchTypeLinksList'>
+            <li className='listItem' ><NavLink className='links searchLink' to='/Search'>Search</NavLink></li>
+            <li className='listItem' id='selectedRandom'><NavLink className='links randomLink' to='/Random'>Don't Even Care!</NavLink></li>
+          </ul>
+        </div>
 
-
-          <h1>Don't even care?</h1>
-          <input type='text' placeholder='City and State OR Zipcode' ref='locationseed'/>
-          <input type='button' value='Roll The Dice' onClick={this.handleRandom}/>
-          <div style={ramdomOutputContainer}>
-            <div style={ramdomBusinessTitle}>
-              <a href={business.url} target="_blank" title={business.name}><h1>{business.name}</h1></a>
-              <div>
-                <h3>{business.price}</h3>
-                <h3>{business.rating}</h3>
+          <div className='random-container'>
+            <h1>Don't even care?</h1>
+            <input type='text' placeholder='City and State OR Zipcode' ref='locationseed'/>
+            <input type='button' value='Roll The Dice' onClick={this.handleRandom}/>
+            <div style={ramdomOutputContainer}>
+              <div style={ramdomBusinessTitle}>
+                <a href={business.url} target="_blank" title={business.name}><h1>{business.name}</h1></a>
+                <div>
+                  <h3>{business.price}</h3>
+                  <h3>{business.rating}</h3>
+                </div>
               </div>
-            </div>
 
-            <div style={ramdomBusinessTitle}>
-              <p>{categories}</p>
-              <p>{location}</p>
-              <p>{phonenum}</p>
+              <div style={ramdomBusinessTitle}>
+                <p>{categories}</p>
+                <p>{location}</p>
+                <p>{phonenum}</p>
 
-              <p>{isOpened}</p>
+                <p>{isOpened}</p>
+              </div>
             </div>
           </div>
         </div>

@@ -86,9 +86,15 @@ export default class Search extends Component {
 
   prepareQuery(e) {
     e.preventDefault();
+
     for (let i of this.state.inputs) {
       this.axiosRequest(i);
     }
+
+    this.setState({
+      inputs: [],
+      data: []
+    })
 
     console.log(this.saveData, 'im logging after all axios requests');
   }
@@ -112,13 +118,7 @@ export default class Search extends Component {
       })
     }
     console.log(this.state.data, 'im your data after looping through search')
-    console.log(this.state.data[0]);
-    // console.log(this.savedData);
-    // let fuck  = this.makeMyChild();
-    // this.setState({
-    //   ayy: fuck
-    // })
-    console.log(this.stuff);
+
   }
 
   makeMyChild(){

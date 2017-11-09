@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import './reset.css';
 import './Search.css';
 import axios from 'axios';
+
 export default class Search extends Component {
   constructor(props) {
     super(props);
@@ -66,8 +68,8 @@ export default class Search extends Component {
      let inputFields = [];
      for(let i = 0; i < this.state.count; i++){
        inputFields.push(
-          <div id='input-form' key={i}>
-            <input onBlur={ this.updateArray } placeholder='Type of food...' type="text" value={this.state.value[i] || ''} onChange={this.handleChange.bind(this, i)} />
+          <div id='input-form' key={ i }>
+            <input onBlur={ this.updateArray } placeholder='Food type' type="text" value={ this.state.value[i] || '' } onChange={ this.handleChange.bind(this, i) }/>
           </div>
         )
      }
@@ -95,8 +97,6 @@ export default class Search extends Component {
       inputs: [],
       data: []
     })
-
-    console.log(this.saveData, 'im logging after all axios requests');
   }
 
   updateArray(e) {
@@ -104,12 +104,10 @@ export default class Search extends Component {
   }
 
   prepData(data) {
-    console.log(data.data.businesses, 'prepdata function')
     this.makeMyObject(data.data.businesses);
   }
 
   makeMyObject(businesses) {
-    console.log(businesses);
 
     for(let i of businesses){
       this.setState({
@@ -117,8 +115,6 @@ export default class Search extends Component {
         data: this.state.data.concat([i])
       })
     }
-    console.log(this.state.data, 'im your data after looping through search')
-
   }
 
   makeMyChild(){
@@ -132,10 +128,10 @@ export default class Search extends Component {
           <p className="business-name">{ this.state.data[i].phone }</p>
           <p className="address">{ this.state.data[i].location.display_address }</p>
         </div>
-        )
+      )
     }
+
     let rand = this.shuffle(resultDivs);
-    console.log(rand);
     resultDivs = rand.slice(0,3);
 
     return resultDivs || null;
@@ -155,18 +151,23 @@ shuffle(a) {
     let display;
     let resultsDisplay;
       display = (
-        <div>
+        <div className="input-area">
           <h1 className="header">What are you craving?</h1>
-          <input placeholder='City or zip code...' onBlur={(e) => this.setState({ myCity: e.target.value })} />
-          <form onSubmit={ this.prepareQuery }>
-            {this.createUI()}
-            <div id='add-remove-buttons'>
-              <input id='add-input' type='button' value='+' onClick={this.addClick.bind(this)}/>
-              <input id='remove-input' type='button' value='-' onClick={this.removeClick.bind(this)} />
+          <div className="form-container">
+            <div className="forms">
+              <input className="zip-code" placeholder='City or Zip' onBlur={(e) => this.setState({ myCity: e.target.value })} />
+              {this.createUI()}
             </div>
-            <input id='submit-cravings' type="submit" value="Submit" />
-          </form>
+            <form onSubmit={ this.prepareQuery }>
+              <div id='add-remove-buttons'>
+                <input id='add-input' type='button' value='+' onClick={this.addClick.bind(this)}/>
+                <input id='remove-input' type='button' value='-' onClick={this.removeClick.bind(this)} />
+              </div>
+              <input id='submit-cravings' type="submit" value="Submit" />
+            </form>
+          </div>
         </div>
+
         )
 
        resultsDisplay = (

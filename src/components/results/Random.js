@@ -19,7 +19,6 @@ export default class Random extends Component {
     this.formatPhoneNumber=this.formatPhoneNumber.bind(this);
   }
 
-
   handleRandom(e){
     (e).preventDefault();
     console.log(this.refs.locationseed.value);

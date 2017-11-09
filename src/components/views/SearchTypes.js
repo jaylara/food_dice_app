@@ -6,10 +6,11 @@ import OAuthButton from '../account/OAuthButton';
 import UserInfo from '../common/UserInfo';
 import { auth } from '../../utils/firebase';
 import './Home.css';
-import Search from '../results/Search';
 
+import Random from '../results/Random';
+import Search from '../results/Search';
 import Login from './Login';
-import Header from '../common/Header';
+import Header from '../common/Header'
 import ResultForm from '../results/ResultForm.js';
 import SearchTypes from '../views/SearchTypes.js';
 
@@ -18,13 +19,20 @@ import SearchTypes from '../views/SearchTypes.js';
 export default class Home extends Component {
   render() {
     return (
-      <Router>
-        <div className='Home'>
-          <Header />
-          <SearchTypes />
+      <div>
+        <Router>
+          <div className='Home'>
+            <Header />
+            <Route exact path='/Home' component={ () => <Search /> } />
+            <Route exact path='/Search' component={ () => <Search /> } />
+            <Route exact path='/Random' component={ () => <Random /> } />
+
+          </div>
+        </Router>
+
       </div>
-    </Router>
     );
+
   }
 }
 

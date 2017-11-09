@@ -1,0 +1,45 @@
+.random-container {
+
+}
+
+
+.random-container .random-container-output {
+  margin: auto;
+  color: white;
+  /*WebkitTransition: all; // note the capital W here
+  msTransition: all; // ms is the only lowercase vendor prefix*/
+  height: 500px;
+  width: 75%;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  box-shadow: 1px 1px 2px #01579B;
+  visibility:hidden;
+}
+
+.random-container-output .business-title {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0,0,0,0.75);
+  padding: 3px 10px;
+}
+
+.random-container-output .business-title a {
+  color: white;
+}
+
+.random-container-output .business-title a:hover {
+  color: white;
+  text-shadow: 1px 1px 2px #01579B;
+}
+
+
+.business-map {
+  width: 10%;
+  cursor: pointer;
+}

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
 .navbar {
   background-color: black;
   color: white;
@@ -6,5 +8,10 @@
 
 .navbar-brand {
   color: white;
+}
 
+.navbar-brand {
+  font-size: 50px;
+  font-family: 'Permanent Marker', sans-serif;
+  margin-top: 5px
 }

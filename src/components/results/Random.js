@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
 import { BrowserRouter as Router, Route, Link, NavLink, Switch } from 'react-router-dom';
 import Header from '../common/Header';
 import Search from '../results/Search';
+// import './Random.css';
+
 
 import './Random.css'
 
@@ -20,16 +23,19 @@ export default class Random extends Component {
     this.formatAddress=this.formatAddress.bind(this);
     this.formatCategories=this.formatCategories.bind(this);
     this.formatPhoneNumber=this.formatPhoneNumber.bind(this);
+
   } // end of constructor
 
   handleRandom(e){
     e.preventDefault();
+
     let idLength = 50;
     axios.get(`https://yelpprox.herokuapp.com/search?term=restaurant&limit=${idLength}&location=${this.refs.locationseed.value}`)
     .then((res) => {
       //check each business' categories
       //remove businesses that
       idLength = res.data.businesses.length
+
       let randomIndex = Math.floor(Math.random()*idLength)
       this.setState({
         randomPick: res.data.businesses[randomIndex]
@@ -91,11 +97,13 @@ export default class Random extends Component {
       });
     } else { //geolocation IS NOT available
       console.log ("error");
+
     }
   }
 
   render() {
     var business = this.state.randomPick;
+
     var location = "";
     var isOpened = "";
     var categories = "";
@@ -106,6 +114,7 @@ export default class Random extends Component {
       location = (business.location) ? this.formatAddress(business.location): '';
       isOpened = business.is_closed ? <span>Closed</span> : <span>Opened</span>;
       categories = this.formatCategories(business);
+
       phonenum = (business.phone)?this.formatPhoneNumber(business.phone):'';
       randomOutputContainer = {
         backgroundImage: `url(${business.image_url})`,
@@ -140,6 +149,7 @@ export default class Random extends Component {
             <p>{location}</p>
             <p>{phonenum}</p>
             <p>{isOpened}</p>
+
           </div>
         </div>
       </div>

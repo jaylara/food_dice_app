@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './reset.css';
+import { BrowserRouter as Router, Route, Link, NavLink, Switch } from 'react-router-dom';
 import './Search.css';
 import axios from 'axios';
 
@@ -12,7 +13,6 @@ export default class Search extends Component {
       hasSearched: false,
       inputs: [],
       data:[],
-      testCount: 0,
       myCity: null
     };
 
@@ -24,8 +24,6 @@ export default class Search extends Component {
       token_type: "Bearer"
     }
 
-    this.imgComp = '';
-    this.saveData = {};
     this.stuff= null;
 
     this.prepData = this.prepData.bind(this);
@@ -123,10 +121,12 @@ export default class Search extends Component {
       resultDivs.push(
         <div id='result-container' key={ i }>
           <img className="image"src={ this.state.data[i].image_url } />
-          <p className="business-name">{ this.state.data[i].name }</p>
-          <p className="open-closed">{ this.state.data[i].is_closed ? 'closed' : 'open' }</p>
-          <p className="business-name">{ this.state.data[i].phone }</p>
-          <p className="address">{ this.state.data[i].location.display_address }</p>
+          <div id="info-div">
+            <p className="business-name">{ this.state.data[i].name }</p>
+            <p className="open-closed">{ this.state.data[i].is_closed ? 'closed' : 'open' }</p>
+            <p className="business-name">{ this.state.data[i].phone }</p>
+            <p className="address">{ this.state.data[i].location.display_address }</p>
+          </div>
         </div>
       )
     }
@@ -152,11 +152,23 @@ shuffle(a) {
     let resultsDisplay;
       display = (
         <div className="input-area">
+
+        <div>
+        <div className='searchTypeLinks test9'>
+          <ul className='searchTypeLinksList'>
+            <li className='listItem' id='selected'><NavLink className='links searchLink' to='/Search'>Search</NavLink></li>
+            <li className='listItem'><NavLink className='links randomLink' to='/Random'>Don't Even Care!</NavLink></li>
+          </ul>
+        </div>
           <h1 className="header">What are you craving?</h1>
           <div className="form-container">
-            <div className="forms">
+            <div id="another-div">
               <input className="zip-code" placeholder='City or Zip' onBlur={(e) => this.setState({ myCity: e.target.value })} />
-              {this.createUI()}
+              <div className="forms">
+                <div id="food-inputs">
+                  {this.createUI()}
+                </div>
+              </div>
             </div>
             <form onSubmit={ this.prepareQuery }>
               <div id='add-remove-buttons'>
@@ -166,6 +178,7 @@ shuffle(a) {
               <input id='submit-cravings' type="submit" value="Submit" />
             </form>
           </div>
+        </div>
         </div>
 
         )

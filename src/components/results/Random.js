@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Link, NavLink, Switch } from 'react-router-dom';
+import Header from '../common/Header';
+import Search from '../results/Search';
 
 import './Random.css'
 
@@ -131,7 +134,6 @@ export default class Random extends Component {
               <h3>{business.price}</h3>
               <h3>{business.rating}</h3>
             </div>
-          </div>
 
           <div className="business-title">
             <p>{categories}</p>

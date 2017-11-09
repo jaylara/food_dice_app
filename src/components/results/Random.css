@@ -27,9 +27,13 @@
   justify-content: space-between;
   background-color: rgba(0,0,0,0.75);
   padding: 3px 10px;
-  text-shadow: 1px 1px 2px #01579B;
 }
 
 .random-container-output .business-title a {
+  color: white;
+}
 
+.random-container-output .business-title a:hover {
+  color: white;
+  text-shadow: 1px 1px 2px #01579B;
 }

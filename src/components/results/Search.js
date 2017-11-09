@@ -12,7 +12,6 @@ export default class Search extends Component {
       hasSearched: false,
       inputs: [],
       data:[],
-      testCount: 0,
       myCity: null
     };
 
@@ -24,8 +23,6 @@ export default class Search extends Component {
       token_type: "Bearer"
     }
 
-    this.imgComp = '';
-    this.saveData = {};
     this.stuff= null;
 
     this.prepData = this.prepData.bind(this);
@@ -123,10 +120,12 @@ export default class Search extends Component {
       resultDivs.push(
         <div id='result-container' key={ i }>
           <img className="image"src={ this.state.data[i].image_url } />
-          <p className="business-name">{ this.state.data[i].name }</p>
-          <p className="open-closed">{ this.state.data[i].is_closed ? 'closed' : 'open' }</p>
-          <p className="business-name">{ this.state.data[i].phone }</p>
-          <p className="address">{ this.state.data[i].location.display_address }</p>
+          <div id="info-div">
+            <p className="business-name">{ this.state.data[i].name }</p>
+            <p className="open-closed">{ this.state.data[i].is_closed ? 'closed' : 'open' }</p>
+            <p className="business-name">{ this.state.data[i].phone }</p>
+            <p className="address">{ this.state.data[i].location.display_address }</p>
+          </div>
         </div>
       )
     }

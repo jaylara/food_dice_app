@@ -155,7 +155,9 @@ shuffle(a) {
           <div className="form-container">
             <div className="forms">
               <input className="zip-code" placeholder='City or Zip' onBlur={(e) => this.setState({ myCity: e.target.value })} />
-              {this.createUI()}
+              <div id="food-inputs">
+                {this.createUI()}
+              </div>
             </div>
             <form onSubmit={ this.prepareQuery }>
               <div id='add-remove-buttons'>

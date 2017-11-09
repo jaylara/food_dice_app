@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
 import { BrowserRouter as Router, Route, Link, NavLink, Switch } from 'react-router-dom';
 import Header from '../common/Header';
 import Search from '../results/Search';
 import './Random.css';
+
 
 export default class Random extends Component {
   constructor(props) {
@@ -17,11 +19,13 @@ export default class Random extends Component {
     this.formatAddress=this.formatAddress.bind(this);
     this.displayCategories=this.displayCategories.bind(this);
     this.formatPhoneNumber=this.formatPhoneNumber.bind(this);
+
   }
 
 
 
   handleRandom(e){
+
     (e).preventDefault();
     console.log(this.refs.locationseed.value);
     let idLength = 50;
@@ -30,6 +34,7 @@ export default class Random extends Component {
       //check each business' categories
       //remove businesses that
       idLength = res.data.businesses.length
+
       let randomIndex = Math.floor(Math.random()*idLength)
       this.setState({
         randomPick: res.data.businesses[randomIndex]
@@ -47,6 +52,7 @@ export default class Random extends Component {
       if (location.address1){
         address += location.address1;
       } if (location.address2){
+
         address += ' '+location.address2;
       } if (location.address3){
         address += location.address3;
@@ -68,6 +74,7 @@ export default class Random extends Component {
       }
       return categories
     }
+
 
     formatPhoneNumber(phonenum) {
         var newNumber = /^(?:\+?1[-. ]?)?(?:\(?([0-9]{3})\)?[-. ]?)?([0-9]{3})[-. ]?([0-9]{4})$/;
@@ -97,12 +104,15 @@ export default class Random extends Component {
     var location = '';
     var isOpened ='';
     var categories = '';
+
     var phonenum = '';
+
     var ramdomOutputContainer = {}, ramdomBusinessTitle;
     if (business) {
       location = (business.location)?this.formatAddress(business.location): '';
       isOpened = business.is_closed?<span>Closed</span>:<span>Opened</span>;
       categories = this.displayCategories(business);
+
       phonenum = (business.phone)?this.formatPhoneNumber(business.phone):'';
       ramdomOutputContainer = {
           margin: 'auto',
@@ -168,6 +178,7 @@ export default class Random extends Component {
                 <p>{isOpened}</p>
               </div>
             </div>
+
           </div>
         </div>
       </div>

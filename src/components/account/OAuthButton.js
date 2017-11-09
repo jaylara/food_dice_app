@@ -26,7 +26,7 @@ export default class OAuthButton extends Component {
   displayLoginButton() {
     return (
       <button className="btn-login btn btn-primary" onClick={this.handleLogin}>
-        { this.props.children || 'Log In' }
+        { this.props.children || 'Login with Facebook' }
       </button>
     );
   } // end of displayLoginButton()

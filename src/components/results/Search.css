@@ -1,81 +1,157 @@
-.header {
-  font-size: 30px;
-  font-family: 'Open Sans', sans-serif;
-  color: #899BB5;
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
+html, body, .root{
+  margin: 0 auto;
+  height: 100%;
 }
 
-form {
+.header {
+  font-size: 30px;
+  font-family: 'Permanent Marker', sans-serif;
+  color: black;
+  padding: 15px;
+}
+
+.input-area {
   display: flex;
-  align-items: center;
   flex-direction: column;
 }
 
-#add-remove-buttons {
+.form-container{
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 400px;
+  margin: auto;
+}
+
+form{
+  padding: 15px;
+}
+
+.forms {
+  margin: 0 auto;
   display: flex;
-}
-
-#add-input {
-  color: white;
-  width: 30px;
-  height: 30px;
-  background-color: #4DD0E1;
-  border-bottom: black 2px solid;
-  border-top: 2px #6f6f6f solid;
-  background: -webkit-gradient(linear, left top, left bottom, from(#C1EBFF), to(#B0C7E8));
-  background: -moz-linear-gradient(top, #EDEDED, #DCDCDC);
-  border-radius: 15%;
-  box-shadow:
-    0px 3px 0px 0px #899BB5,
-    0px 2px 4px 0px rgba(0, 0, 0, 0.4);
-  border : 1px solid #B2C9EB;
-  margin-top: 10px;
-}
-
-#remove-input {
-  color: white;
-  width: 30px;
-  height: 30px;
-  background-color: #4DD0E1;
-  border-bottom: black 2px solid;
-  border-top: 2px #6f6f6f solid;
-  background: -webkit-gradient(linear, left top, left bottom, from(#C1EBFF), to(#B0C7E8));
-  background: -moz-linear-gradient(top, #EDEDED, #DCDCDC);
-  border-radius: 15%;
-  box-shadow:
-    0px 3px 0px 0px #899BB5,
-    0px 2px 4px 0px rgba(0, 0, 0, 0.4);
-  border : 1px solid #B2C9EB;
-  margin-top: 10px;
-  margin-left: 5px;
+  flex-direction: row;
 }
 
 input {
-  border-radius: 25px;
-  margin: 1%;
-  border-color: #C1EBFF;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border-color: #5E5E5D;
+  flex-direction: column;
+}
+
+input[type=button] {
+ margin: 10px;
+ border-radius: 5px;
+}
+
+input[type=text] {
+ margin: 10px;
+ flex-direction: column;
+ border-radius: 5px;
+}
+
+input[type=submit] {
+padding: 5px 20px;
+}
+
+#add-input {
+  font-family: 'Permanent Marker', sans-serif;
+  padding-left: 10px;
+  color: white;
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  border-bottom: black 2px solid;
+  border-top: 2px black solid;
+  background: -webkit-gradient(linear, left top, left bottom, from(gray), to(black));
+  border-radius: 15%;
+  box-shadow:
+    0px 3px 0px 0px #5E5E5D,
+    0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+  border : 1px solid gray;
+  margin-top: 10px;
 }
 
 #add-input:active {
   top: 1px;
-  box-shadow: 0px 0px 0px 0px #899BB5,
+  box-shadow: 0px 0px 0px 0px #5E5E5D,
   0px 1px 2px 0px rgba(0, 0, 0, 0.4) inset;
+}
+
+#remove-input {
+  font-family: 'Permanent Marker', sans-serif;
+  padding-left: 11px;
+  align-content: center;
+  color: white;
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  border-bottom: black 2px solid;
+  border-top: 2px #6f6f6f solid;
+  background: -webkit-gradient(linear, left top, left bottom, from(gray), to(black));
+  border-radius: 15%;
+  box-shadow:
+    0px 3px 0px 0px #5E5E5D,
+    0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+  border : 1px solid gray;
+  margin-top: 10px;
+  margin-left: 5px;
 }
 
 #remove-input:active {
   top: 1px;
-  box-shadow: 0px 0px 0px 0px #899BB5,
+  box-shadow: 0px 0px 0px 0px #5E5E5D,
   0px 1px 2px 0px rgba(0, 0, 0, 0.4) inset;
 }
 
-#render-results {
+#result-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
 }
 
-img {
-  width: 20%;
-  height: auto;
+.image {
+  width: 30%;
+  height: 30%;
+  margin: 5%;
 }
-p {
-  width: 20%;
+
+#info-div {
+  margin: 5%;
+}
+
+#another-div {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+#submit-cravings {
+  color: white;
+  font-family: 'Permanent Marker', sans-serif;
+  background-color: black;
+  border-bottom: black 2px solid;
+  border-top: 2px #6f6f6f solid;
+  background: -webkit-gradient(linear, left top, left bottom, from(gray), to(black));
+  border-radius: 5px;
+  box-shadow:
+    0px 3px 0px 0px #5E5E5D,
+    0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+  border : 1px solid gray;
+}
+
+#submit-cravings:active {
+  top: 1px;
+  box-shadow: 0px 0px 0px 0px #5E5E5D,
+  0px 1px 2px 0px rgba(0, 0, 0, 0.4) inset;
+}
+
+.render-results {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 630px;
+  height: 40%;
 }

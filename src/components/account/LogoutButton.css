@@ -1,14 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
 #logout-button {
-  color: white;
-  background-color: #4DD0E1;
-  border-bottom: black 2px solid;
+  font-family: 'Permanent Marker', sans-serif;
+  color: black;
+  background-color: white;
+  border-bottom: white 2px solid;
   border-top: 2px #6f6f6f solid;
-  background: -webkit-gradient(linear, left top, left bottom, from(#C1EBFF), to(#B0C7E8));
-  background: -moz-linear-gradient(top, #EDEDED, #DCDCDC);
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(gray));
   border-radius: 15%;
   box-shadow:
-    0px 3px 0px 0px #899BB5,
+    0px 3px 0px 0px #5E5E5D,
     0px 2px 4px 0px rgba(0, 0, 0, 0.4);
-  border : 1px solid #B2C9EB;
-  margin-top: 10px;
+  border : 1px solid gray;
+  margin-top: 5px;
+}
+
+#logout-button:active {
+  top: 1px;
+  box-shadow: 0px 0px 0px 0px #5E5E5D,
+  0px 1px 2px 0px rgba(0, 0, 0, 0.4) inset;
 }

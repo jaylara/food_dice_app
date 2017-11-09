@@ -177,8 +177,7 @@ shuffle(a) {
             </form>
           </div>
         </div>
-        </div>
-
+        
         )
 
        resultsDisplay = (

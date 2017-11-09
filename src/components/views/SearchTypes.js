@@ -23,9 +23,9 @@ export default class Home extends Component {
         <Router>
           <div className='Home'>
             <Header />
-            <Route exact path='/Home' component={ () => <Search /> } />
-            <Route exact path='/Search' component={ () => <Search /> } />
-            <Route exact path='/Random' component={ () => <Random /> } />
+            <Route exact path='/' component={ () => <Search /> } />
+            <Route path='/Search' component={ () => <Search /> } />
+            <Route path='/Random' component={ () => <Random /> } />
 
           </div>
         </Router>

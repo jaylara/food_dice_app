@@ -139,6 +139,12 @@ export default class Random extends Component {
 
     return (
       <div className='random-container'>
+        <div className='searchTypeLinks test9'>
+          <ul className='searchTypeLinksList'>
+            <li className='listItem' id='selected'><NavLink className='links searchLink' to='/Search'>Search</NavLink></li>
+            <li className='listItem'><NavLink className='links randomLink' to='/Random'>Don't Even Care!</NavLink></li>
+          </ul>
+        </div>
         <h1>Dont even care?</h1>
         <input type='text' placeholder='City and State OR Zipcode' ref='locationseed'
                 onKeyDown={(e) => {if(e.keyCode === 13) this.handleRandom(e)}}/>

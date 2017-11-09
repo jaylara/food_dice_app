@@ -20,7 +20,6 @@ export default class Random extends Component {
   }
 
 
-
   handleRandom(e){
     (e).preventDefault();
     console.log(this.refs.locationseed.value);

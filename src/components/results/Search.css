@@ -58,6 +58,7 @@ padding: 5px 20px;
 }
 
 #add-input {
+  font-family: 'Permanent Marker', sans-serif;
   padding-left: 10px;
   color: white;
   width: 30px;
@@ -81,6 +82,7 @@ padding: 5px 20px;
 }
 
 #remove-input {
+  font-family: 'Permanent Marker', sans-serif;
   padding-left: 11px;
   align-content: center;
   color: white;
@@ -120,10 +122,6 @@ padding: 5px 20px;
   margin: 5%;
 }
 
-.zip-code {
-  flex: 0;
-}
-
 #another-div {
   display: flex;
   flex-direction: row;
@@ -132,6 +130,7 @@ padding: 5px 20px;
 
 #submit-cravings {
   color: white;
+  font-family: 'Permanent Marker', sans-serif;
   background-color: black;
   border-bottom: black 2px solid;
   border-top: 2px #6f6f6f solid;
@@ -147,4 +146,12 @@ padding: 5px 20px;
   top: 1px;
   box-shadow: 0px 0px 0px 0px #5E5E5D,
   0px 1px 2px 0px rgba(0, 0, 0, 0.4) inset;
+}
+
+.render-results {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 630px;
+  height: 40%;
 }

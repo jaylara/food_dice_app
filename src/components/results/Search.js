@@ -156,8 +156,6 @@ shuffle(a) {
       display = (
 
         <div className="input-area">
-
-        <div>
         <div className='searchTypeLinks test9'>
           <ul className='searchTypeLinksList'>
             <li className='listItem' id='selected'><NavLink className='links searchLink' to='/Search'>Search</NavLink></li>

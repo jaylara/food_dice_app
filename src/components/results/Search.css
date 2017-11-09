@@ -5,7 +5,7 @@ html, body, .root{
   height: 100%;
 }
 
-#header {
+.header {
   font-size: 30px;
   font-family: 'Permanent Marker', sans-serif;
   color: black;
@@ -20,6 +20,8 @@ html, body, .root{
 .form-container{
   border: 2px solid black;
   border-radius: 5px;
+  width: 400px;
+  margin: auto;
 }
 
 form{
@@ -30,11 +32,6 @@ form{
   margin: 0 auto;
   display: flex;
   flex-direction: row;
-  padding-top: 15px;
-  flex-direction: row;
-  justify-content: space-around;
-  flex: 0;
-
 }
 
 input {
@@ -77,6 +74,12 @@ padding: 5px 20px;
   margin-top: 10px;
 }
 
+#add-input:active {
+  top: 1px;
+  box-shadow: 0px 0px 0px 0px #5E5E5D,
+  0px 1px 2px 0px rgba(0, 0, 0, 0.4) inset;
+}
+
 #remove-input {
   padding-left: 11px;
   align-content: center;
@@ -94,12 +97,6 @@ padding: 5px 20px;
   border : 1px solid gray;
   margin-top: 10px;
   margin-left: 5px;
-}
-
-#add-input:active {
-  top: 1px;
-  box-shadow: 0px 0px 0px 0px #5E5E5D,
-  0px 1px 2px 0px rgba(0, 0, 0, 0.4) inset;
 }
 
 #remove-input:active {
@@ -123,4 +120,12 @@ padding: 5px 20px;
   margin: 5%;
 }
 
+.zip-code {
+  flex: 0;
+}
 
+#another-div {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}

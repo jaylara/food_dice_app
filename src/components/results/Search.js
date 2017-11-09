@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-
 import './reset.css';
-
 import { BrowserRouter as Router, Route, Link, NavLink, Switch } from 'react-router-dom';
-
 import './Search.css';
 import axios from 'axios';
 
@@ -154,7 +151,6 @@ shuffle(a) {
     let display;
     let resultsDisplay;
       display = (
-
         <div className="input-area">
 
         <div>
@@ -195,7 +191,7 @@ shuffle(a) {
 
     return (
       <div>
-        <div>{display}</div>
+        {display}
         {resultsDisplay}
       </div>
     );

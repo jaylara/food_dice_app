@@ -17,6 +17,7 @@ export default class Random extends Component {
     } // end of initialize this.state
 
     this.handleRandom=this.handleRandom.bind(this);
+    this.toggleMap=this.toggleMap.bind(this);
     this.formatAddress=this.formatAddress.bind(this);
     this.formatCategories=this.formatCategories.bind(this);
     this.formatPhoneNumber=this.formatPhoneNumber.bind(this);
@@ -38,7 +39,8 @@ export default class Random extends Component {
     .catch((error)=>{
       console.log('error');
       this.setState({
-        randomPick: null
+        randomPick: null,
+        isMapHidden: true
       })
     }) // end of axios.get.then
   } // end of handleRandom()
@@ -80,6 +82,12 @@ export default class Random extends Component {
     } // end of else
   } // end of formatPhoneNumber()
 
+  toggleMap(e) {
+    this.setState({
+      isMapHidden : !this.state.isMapHidden
+    })
+  }
+
   componentDidMount() {
     if ("geolocation" in navigator) { //geolocation is available
 
@@ -100,7 +108,8 @@ export default class Random extends Component {
     var isOpened = "";
     var categories = "";
     var phonenum = "";
-    var mapTest = "";
+    var staticMapSrc = "";
+    var staticMapStyle = "";
     var randomOutputContainer = {};
     if (business) {
       location = (business.location) ? this.formatAddress(business.location): '';
@@ -111,11 +120,11 @@ export default class Random extends Component {
         backgroundImage: `url(${business.image_url})`,
         visibility:'visible'
       };
-      var img=`https://maps.googleapis.com/maps/api/staticmap?`
-              //+ `center=${this.state.location.latitude},${this.state.location.longitude}`
-              + `center=${business.coordinates.latitude},${business.coordinates.longitude}`
-              + `&zoom=13&size=400x400&sensor=false`
-      mapTest = <img src={img} alt={business.name} />
+      var staticMapSrc=`https://maps.googleapis.com/maps/api/staticmap?`
+                        //+ `center=${this.state.location.latitude},${this.state.location.longitude}`
+                        + `center=${business.coordinates.latitude},${business.coordinates.longitude}`
+                        + `&zoom=13&size=400x400&sensor=false`
+                        + `&key=AIzaSyDDQfQVi8sWBRMBLHMfmkcBko6r44-mo9o`;
       this.formatCategories(business);
     } // end of if
 
@@ -125,7 +134,7 @@ export default class Random extends Component {
         <input type='text' placeholder='City and State OR Zipcode' ref='locationseed'
                 onKeyDown={(e) => {if(e.keyCode === 13) this.handleRandom(e)}}/>
         <input type='button' value='Roll The Dice' onClick={this.handleRandom}/>
-        {mapTest}
+
         <div className="random-container-output" style={randomOutputContainer}>
 
           <div className="business-title">
@@ -134,7 +143,11 @@ export default class Random extends Component {
               <h3>{business.price}</h3>
               <h3>{business.rating}</h3>
             </div>
-
+          </div>
+          <div className="business-map" onClick={this.toggleMap}>
+            <div>🗺</div>
+            {this.state.isMapHidden && <img id="static-map" src={staticMapSrc} alt={business.name} /> }
+          </div>
           <div className="business-title">
             <p>{categories}</p>
             <p>{location}</p>

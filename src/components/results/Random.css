@@ -37,3 +37,9 @@
   color: white;
   text-shadow: 1px 1px 2px #01579B;
 }
+
+
+.business-map {
+  width: 10%;
+  cursor: pointer;
+}

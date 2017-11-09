@@ -12,7 +12,7 @@ import Login from './Login';
 import Header from '../common/Header';
 import ResultForm from '../results/ResultForm.js';
 import SearchTypes from '../views/SearchTypes.js';
-import SearchRandomTypes from '../views/SearchRandomTypes.js';
+
 
 
 export default class Home extends Component {
@@ -24,8 +24,8 @@ export default class Home extends Component {
             <Header />
             <div className='searchTypeLinks'>
               <ul className='searchTypeLinksList'>
-                <li><NavLink to='/Search'>Search</NavLink></li>
-                <li><NavLink to='/Random'>Don't Even Care!</NavLink></li>
+                <li><NavLink className='searchLink' to='/Search'>Search</NavLink></li>
+                <li><NavLink className='randomLink' to='/Random'>Don't Even Care!</NavLink></li>
               </ul>
             </div>
             <Route exact path='/Home' component={ () => <Search /> } />

@@ -9,7 +9,7 @@ import { auth } from './utils/firebase';
 
 import Home from './components/views/Home';
 import Login from './components/views/Login';
-import SearchRandomTypes from './components/views/SearchRandomTypes';
+
 
 export default class App extends Component {
   constructor(props) {

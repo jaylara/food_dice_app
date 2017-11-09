@@ -12,7 +12,7 @@ import Login from './Login';
 import Header from '../common/Header';
 import ResultForm from '../results/ResultForm.js';
 import SearchTypes from '../views/SearchTypes.js';
-import SearchRandomTypes from '../views/SearchRandomTypes.js';
+
 
 
 export default class Home extends Component {

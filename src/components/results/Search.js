@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link, NavLink, Switch } from 'react-router-dom';
+
 import './Search.css';
 import axios from 'axios';
 export default class Search extends Component {
@@ -160,6 +162,12 @@ export default class Search extends Component {
     !this.state.hasSearched?
       display = (
         <div>
+        <div className='searchTypeLinks test9'>
+          <ul className='searchTypeLinksList'>
+            <li className='listItem' id='selected'><NavLink className='links searchLink' to='/Search'>Search</NavLink></li>
+            <li className='listItem'><NavLink className='links randomLink' to='/Random'>Don't Even Care!</NavLink></li>
+          </ul>
+        </div>
           <h1 className="header">What are you craving?</h1>
           <form onSubmit={ this.prepareQuery }>
             {this.createUI()}

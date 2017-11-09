@@ -17,6 +17,12 @@
 }
 
 .btn-login:active {
+  color: black;
+  background-color: white;
+  border-bottom: white 2px solid;
+  border-top: 2px #6f6f6f solid;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(gray));
+  border-radius: 5px;
   top: 1px;
   box-shadow: 0px 0px 0px 0px #5E5E5D,
   0px 1px 2px 0px rgba(0, 0, 0, 0.4) inset;

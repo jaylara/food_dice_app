@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-
+import './Login.css';
 //account/user component/dependency
 import OAuthButton from '../account/OAuthButton';
 import UserInfo from '../common/UserInfo';

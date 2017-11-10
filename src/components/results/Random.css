@@ -9,7 +9,8 @@
   /*WebkitTransition: all; // note the capital W here
   msTransition: all; // ms is the only lowercase vendor prefix*/
   height: 500px;
-  width: 75%;
+  min-width: 700px;
+  width: 700px;
   overflow: hidden;
   background-repeat: no-repeat;
   background-position: center;
@@ -42,4 +43,23 @@
 .business-map {
   width: 10%;
   cursor: pointer;
+}
+
+/*<div class="roll-dice"></div>*/
+@keyframes diceroll {
+  0%   {content: "⚀";}
+  20%  {content: "⚁";}
+  40%  {content: "⚂";}
+  60%  {content: "⚃";}
+  80%  {content: "⚄";}
+  100% {content: "⚅";}
+}
+
+.roll_dice {
+  display: inline;
+}
+.roll-dice:after {
+animation: diceroll 3s linear infinite alternate;
+content: "⚀";
+font-size: 100px;
 }

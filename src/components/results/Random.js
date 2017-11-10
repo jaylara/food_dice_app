@@ -123,12 +123,19 @@ export default class Random extends Component {
 
     return (
       <div className='random-container'>
-        <h1>Dont even care?</h1>
-        <input type='text' placeholder='City and State OR Zipcode' ref='locationseed'
-                onKeyDown={(e) => {if(e.keyCode === 13) this.handleRandom(e)}}/>
-        <input type='button' value='Roll The Dice' className="roll-dice" onClick={this.handleRandom}/>
-        <div className="roll-dice"></div>
 
+        <div className='searchTypeLinks test9'>
+          <ul className='searchTypeLinksList'>
+            <li className='listItem'><NavLink className='links searchLink' to='/Search'>Search</NavLink></li>
+            <li className='listItem' id='selectedRandom'><NavLink className='links randomLink' to='/Random'>Don't Even Care!</NavLink></li>
+          </ul>
+        </div>
+        <h1 className="header">Dont even care?</h1>
+        <div className="form-container">
+          <input type='text' placeholder='City and State OR Zipcode' ref='locationseed'
+                  onKeyDown={(e) => {if(e.keyCode === 13) this.handleRandom(e)}}/>
+          <input type='button' id='submit-roll-dice' value='Roll The Dice' onClick={this.handleRandom}/>
+        </div>
         <div className="random-container-output" style={randomOutputContainer}>
 
           <div className="business-title">
@@ -148,7 +155,7 @@ export default class Random extends Component {
           <div className="business-title">
             <p>{categories}</p>
             <p>{location}</p>
-            <p>{phonenum}</p>
+            <p><a href="tel:{phonenum}">{phonenum}</a></p>
             <p>{isOpened}</p>
           </div>
         </div>

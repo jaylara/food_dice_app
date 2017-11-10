@@ -1,1 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 
+.Login {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/2-Dice-Icon.svg/2000px-2-Dice-Icon.svg.png');
+  background-size: cover;
+  background-position: center;
+  width: 550px;
+  height: 550px;
+}
+
+#header {
+  margin-left: 3%;
+  margin-top: 5%;
+  font-family: 'Permanent Marker', sans-serif;
+  width: 300px;
+}
+
+h1 {
+  font-size: 35px;
+}

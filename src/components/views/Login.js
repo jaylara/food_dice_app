@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-
-//account/user component/dependency
 import OAuthButton from '../account/OAuthButton';
-import UserInfo from '../common/UserInfo';
 import { auth } from '../../utils/firebase';
+import './Login.css';
+//account/user component/dependency
 
 export default class Login extends Component {
   constructor(props) {
@@ -24,6 +22,9 @@ export default class Login extends Component {
   render() {
     return (
       <div className="Login">
+        <div id='header'>
+          <h1>Welcome to<br></br>Food Dice</h1>
+        </div>
         <OAuthButton currentUser={ this.state.currentUser } />
       </div>
     );

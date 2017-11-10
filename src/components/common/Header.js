@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 import LogoutButton from '../account/LogoutButton';
-import UserInfo from '../common/UserInfo';
-import { auth } from '../../utils/firebase';
 import './Header.css';
 
 export default class Header extends Component {
@@ -19,7 +17,7 @@ export default class Header extends Component {
       return (
         <a href='#' className='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
           <img className='profile-picture'
-            src={this.props.currentUser.photoURL} alt='profile picture' />
+            src={this.props.currentUser.photoURL} alt={this.props.currentUser.displayName} />
             {displayName} <span className='caret'></span>
         </a>
       );

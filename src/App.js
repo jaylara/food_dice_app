@@ -43,7 +43,7 @@ return (
 
           </nav>
           <Switch>
-            <Route exact path='/' component={ Login } />
+            <Route exact path='/home' component={ Login } />
 
           </Switch>
         </div>

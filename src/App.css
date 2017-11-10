@@ -30,6 +30,25 @@ header .title {
   font-size: large;
 }
 
+/*<div class="roll-dice"></div>*/
+@keyframes diceroll {
+  0%   {content: "⚀";}
+  20%  {content: "⚁";}
+  40%  {content: "⚂";}
+  60%  {content: "⚃";}
+  80%  {content: "⚄";}
+  100% {content: "⚅";}
+}
+
+.roll_dice {
+  display: inline;
+}
+.roll-dice:after {
+  animation: diceroll 3s linear infinite alternate;
+  content: "⚀";
+  font-size: 100px;
+  line-height: 70px;
+}
 
 
 @keyframes App-logo-spin {

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 
 import LogoutButton from '../account/LogoutButton';
 import './Header.css';
 
 export default class Header extends Component {
+  /*
   getUserInfo(){
     if (this.props.currentUser){
       //if user is logged in.....
@@ -26,9 +27,20 @@ export default class Header extends Component {
       return <LogoutButton>Log out</LogoutButton>;
     }
   }
-
+*/
   render() {
     return (
+      <div className="navbar">
+        <h1 className='navbar-brand'>Food<div class="roll-dice"></div>Dice</h1>
+        <div className='links'>
+          <a href="/Search">Search</a>
+          <a href="/Random">Dont Even Care!</a>
+        </div>
+        <LogoutButton>Log out</LogoutButton>
+
+
+
+      {/*
       <Router>
         <nav className='navbar navbar-fixed-top'>
           <div className='container'>
@@ -36,7 +48,7 @@ export default class Header extends Component {
               <button type='button' className='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded="false" aria-controls="navbar">
                 <span className='sr-only'>Toggle Navigation</span>
               </button>
-              <h1 className='navbar-brand'>Food Dice</h1>
+              <h1 className='navbar-brand'>Food<div class="roll-dice"></div>Dice</h1>
             </div>
             <div id='navbar' className='navbar-collapse collapse'>
               <ul className='nav navbar-nav navbar-right'>
@@ -53,6 +65,8 @@ export default class Header extends Component {
           </div>
         </nav>
       </Router>
+      */}
+      </div>
     );
   }
 }

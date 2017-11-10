@@ -20,6 +20,7 @@ export default class Login extends Component {
   } // end of componentWillMount()
 
   render() {
+
     return (
       <div className="Login">
         <div id='header'>

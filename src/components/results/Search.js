@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './reset.css';
+//import './reset.css';
 import { NavLink } from 'react-router-dom';
 import './Search.css';
 import axios from 'axios';
@@ -132,12 +132,6 @@ export default class Search extends Component {
     let resultsDisplay;
       display = ( //set sthe initial display with test form. Sending a call back to a child component was giving us CORS issues with the http request, hence all the code on this section
         <div className="input-area">
-        <div className='searchTypeLinks test9'>
-          <ul className='searchTypeLinksList'>
-            <li className='listItem' id='selected'><NavLink className='links searchLink' to='/Search'>Search</NavLink></li>
-            <li className='listItem'><NavLink className='links randomLink' to='/Random'>Dont Even Care!</NavLink></li>
-          </ul>
-        </div>
           <h1 className="header">What are you craving?</h1>
           <div className="form-container">
             <div id="another-div">

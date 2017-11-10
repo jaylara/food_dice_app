@@ -13,8 +13,7 @@ export default class Search extends Component {
       hasSearched: false,
       inputs: [],
       data:[],
-      myCity: null,
-      toggle: null
+      myCity: null
     };
     this.prepareQuery = this.prepareQuery.bind(this);
     this.axiosRequest = this.axiosRequest.bind(this);
@@ -96,13 +95,7 @@ export default class Search extends Component {
         data: this.state.data.concat([i])
       })
     }
-    this.setState({
-      toggle: (
-      <div className="render-results">
-        {this.makeMyChild()}
-      </div>
-      ) 
-    })
+    console.log(this.state.data);
   }
   makeMyChild(){
     //goes through saved API data and creates appendable HTML elements
@@ -112,7 +105,7 @@ export default class Search extends Component {
         <div id='result-container' key={ i }>
           <img className="image"src={ this.state.data[i].image_url } />
           <div id="info-div">
-            <p className="business-name">{ this.state.data[i].name }</p>
+            <a href={this.state.data[i].url} className="business-name">{ this.state.data[i].name }</a>
             <p className="open-closed">{ this.state.data[i].is_closed ? 'closed' : 'open' }</p>
             <p className="business-name"><a href="tel:{ this.state.data[i].display_phone }">{ this.state.data[i].display_phone }</a></p>
             <p className="address">{ this.state.data[i].location.display_address }</p>
@@ -133,44 +126,49 @@ export default class Search extends Component {
     }
     return arr;
   }
-
   render() {
     let display;
     let resultsDisplay;
-    display = (
-      <div className="input-area">
-      <div className='searchTypeLinks test9'>
-        <ul className='searchTypeLinksList'>
-          <li className='listItem' id='selected'><NavLink className='links searchLink' to='/Search'>Search</NavLink></li>
-          <li className='listItem'><NavLink className='links randomLink' to='/Random'>Don't Even Care!</NavLink></li>
-        </ul>
-      </div>
-        <h1 className="header">What are you craving?</h1>
-        <div className="form-container">
-          <div id="another-div">
-            <input className="zip-code" placeholder='City or Zip' onBlur={(e) => this.setState({ myCity: e.target.value })} />
-            <div className="forms">
-              <div id="food-inputs">
-                {this.createUI()}
+      display = ( //set sthe initial display with test form. Sending a call back to a child component was giving us CORS issues with the http request, hence all the code on this section
+        <div className="input-area">
+        <div className='searchTypeLinks test9'>
+          <ul className='searchTypeLinksList'>
+            <li className='listItem' id='selected'><NavLink className='links searchLink' to='/Search'>Search</NavLink></li>
+            <li className='listItem'><NavLink className='links randomLink' to='/Random'>Don't Even Care!</NavLink></li>
+          </ul>
+        </div>
+          <h1 className="header">What are you craving?</h1>
+          <div className="form-container">
+            <div id="another-div">
+              <input className="zip-code" placeholder='City or Zip' onBlur={(e) => this.setState({ myCity: e.target.value })} />
+              <div className="forms">
+                <div id="food-inputs">
+                  {this.createUI()}
+                </div>
               </div>
             </div>
+            <form onSubmit={ this.prepareQuery }>
+              <div id='add-remove-buttons'>
+                <input id='add-input' type='button' value='+' onClick={this.addClick.bind(this)}/>
+                <input id='remove-input' type='button' value='-' onClick={this.removeClick.bind(this)} />
+              </div>
+              <input id='submit-cravings' type="submit" value="Submit" />
+            </form>
           </div>
-          <form onSubmit={ this.prepareQuery }>
-            <div id='add-remove-buttons'>
-              <input id='add-input' type='button' value='+' onClick={this.addClick.bind(this)}/>
-              <input id='remove-input' type='button' value='-' onClick={this.removeClick.bind(this)} />
-            </div>
-            <input id='submit-cravings' type="submit" value="Submit" />
-          </form>
         </div>
-      </div>
-      
-      )
+        
+        )
 
-    this.toggle = this.state.hasSearched ? resultsDisplay : display; 
+       resultsDisplay = (
+        <div className="render-results">
+          {this.makeMyChild()}
+        </div>
+        )
+
     return (
       <div>
-        {this.toggle}
+        {display}
+        {resultsDisplay}
       </div>
     );
   }

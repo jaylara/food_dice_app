@@ -119,32 +119,44 @@ padding: 5px 20px;
 
 #result-container {
   display: flex;
-  flex-direction: row;
-  margin: auto;
+  justify-content: flex-start;
+  align-items: flex-start;
   color: white;
   box-shadow: 1px 1px 2px #01579B;
   border: 1px solid black;
 
 
+}
+
+.business-name {
+  font-size: 20px;
 
 }
 
-.business-name, .open-closed, .address, .image {
+/*.business-name, .open-closed, .address, .image {
   display: flex;
   justify-content: space-between;
   background-color: rgba(0,0,0,0.75);
   padding: 3px 10px;
   align-items: center;
 }
-
+*/
 .image {
-  width: 30%;
-  height: 30%;
-  margin: 5%;
+  height: 150px;
+  width: 250px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-right: 20px;
 }
 
 #info-div {
-  margin: 5%;
+  color: black;
+}
+#info-div p {
+  padding: 0;
+  margin: 0;
 }
 
 #another-div {
@@ -178,5 +190,5 @@ padding: 5px 20px;
   flex-direction: column;
   justify-content: space-around;
   width: 630px;
-  height: 40%;
+  margin-bottom: 200px;
 }

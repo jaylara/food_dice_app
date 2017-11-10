@@ -102,12 +102,18 @@ export default class Search extends Component {
     let resultDivs = [];
     for(let i = 0; i < this.state.data.length ; i++) {
       let currentItem = this.state.data[i];
+      let img = {
+        backgroundImage: `url(${this.state.data[i].image_url})`
+      };
+
       resultDivs.push(
         <div id='result-container' key={ i }>
-          <img className="image"src={ this.state.data[i].image_url } />
+          <div className="image" style={img} >
+          </div>
           <div id="info-div">
-            <a href={currentItem.url} className="business-name">{ currentItem.name }</a><p className="business-name">{currentItem.price}</p>
-            <p className="open-closed">{ currentItem.is_closed ? 'closed' : 'open' }</p><p className="business-name">{currentItem.rating}</p>
+            <a href={currentItem.url} className="business-name">{ currentItem.name }</a>
+            <p className="business-name">{currentItem.price}</p>
+            <p className="open-closed">{ currentItem.is_closed ? 'closed' : 'open' }</p><p className="business-name"><img src={'/img/small_'+currentItem.rating+'.png'} /></p>
             <p className="business-name"><a href="tel:{ currentItem.display_phone }">{currentItem.display_phone }</a></p>
             <p className="address">{ currentItem.location.display_address }</p>
           </div>

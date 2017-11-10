@@ -1,3 +1,4 @@
+
 footer {
   background-color: black;
   color: white;
@@ -9,7 +10,10 @@ footer {
 
   font-family: 'Permanent Marker', sans-serif;
   font-size: 25px;
-  text-align:
+  position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 footer p {

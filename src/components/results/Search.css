@@ -127,6 +127,21 @@ padding: 5px 20px;
 #result-container {
   display: flex;
   flex-direction: row;
+  margin: auto;
+  color: white;
+  box-shadow: 1px 1px 2px #01579B;
+  border: 1px solid black;
+
+
+
+}
+
+.business-name, .open-closed, .address, .image {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0,0,0,0.75);
+  padding: 3px 10px;
+  align-items: center;
 }
 
 .image {

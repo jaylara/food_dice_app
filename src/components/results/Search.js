@@ -124,7 +124,7 @@ export default class Search extends Component {
           <div id="info-div">
             <p className="business-name">{ this.state.data[i].name }</p>
             <p className="open-closed">{ this.state.data[i].is_closed ? 'closed' : 'open' }</p>
-            <p className="business-name">{ this.state.data[i].phone }</p>
+            <p className="business-name"><a href="tel:{ this.state.data[i].display_phone }">{ this.state.data[i].display_phone }</a></p>
             <p className="address">{ this.state.data[i].location.display_address }</p>
           </div>
         </div>

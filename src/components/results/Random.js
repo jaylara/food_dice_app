@@ -147,7 +147,7 @@ export default class Random extends Component {
 
             <div>
               <h3>{business.price}</h3>
-              <h3>{business.rating}</h3>
+              <h3><img src={'/img/small_'+business.rating+'.png'} /></h3>
             </div>
           </div>
           <div className="business-map" >

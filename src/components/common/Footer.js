@@ -13,9 +13,9 @@ export default class Footer extends Component {
         <p>Created at <b>GA</b> by<br/>
           <a href="https://github.com/CescoIV" target="_blank" title="Francisco Ordaz">Francisco Ordaz</a>,
           <a href="https://github.com/LallieDragon" target="_blank" title="Carrington Simecheck">Carrington Simecheck</a>,
-          <a href="https://github.com/TheTeejers" target="_blank" title="TJ Loughry">TJ Loughry</a>
-          </p>
-
+          <a href="https://github.com/TheTeejers" target="_blank" title="TJ Loughry">TJ Loughry</a>,
+          <a href="#" target="_blank" title="Jay">Jay</a>
+        </p>
       </footer>
     );
   }

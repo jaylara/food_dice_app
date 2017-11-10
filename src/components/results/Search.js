@@ -101,14 +101,15 @@ export default class Search extends Component {
     //goes through saved API data and creates appendable HTML elements
     let resultDivs = [];
     for(let i = 0; i < this.state.data.length ; i++) {
+      let currentItem = this.state.data[i];
       resultDivs.push(
         <div id='result-container' key={ i }>
           <img className="image"src={ this.state.data[i].image_url } />
           <div id="info-div">
-            <a href={this.state.data[i].url} className="business-name">{ this.state.data[i].name }</a>
-            <p className="open-closed">{ this.state.data[i].is_closed ? 'closed' : 'open' }</p>
-            <p className="business-name"><a href="tel:{ this.state.data[i].display_phone }">{ this.state.data[i].display_phone }</a></p>
-            <p className="address">{ this.state.data[i].location.display_address }</p>
+            <a href={currentItem.url} className="business-name">{ currentItem.name }</a><p className="business-name">{currentItem.price}</p>
+            <p className="open-closed">{ currentItem.is_closed ? 'closed' : 'open' }</p><p className="business-name">{currentItem.rating}</p>
+            <p className="business-name"><a href="tel:{ currentItem.display_phone }">{currentItem.display_phone }</a></p>
+            <p className="address">{ currentItem.location.display_address }</p>
           </div>
         </div>
       )

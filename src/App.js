@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
-
-//account/user component/dependency
-import OAuthButton from './components/account/OAuthButton';
-import UserInfo from './components/common/UserInfo';
 import { auth } from './utils/firebase';
 
 import Home from './components/views/Home';
 import Login from './components/views/Login';
+import './App.css';
+
 
 
 export default class App extends Component {
@@ -34,20 +30,5 @@ export default class App extends Component {
     else {
       return (<Login />);
     }
-return (
-  <Router>
-        <div>
-          <nav>
-            <Link to='/' exact= { true } >Login</Link>
-            <Link to='/home' >Home</Link>
-
-          </nav>
-          <Switch>
-            <Route exact path='/home' component={ Login } />
-
-          </Switch>
-        </div>
-      </Router>
-      )
   }
 }

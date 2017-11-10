@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { BrowserRouter as NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 import './Random.css'
@@ -123,13 +124,13 @@ export default class Random extends Component {
 
     return (
       <div className='random-container'>
-
+{/*
         <div className='searchTypeLinks test9'>
           <ul className='searchTypeLinksList'>
             <li className='listItem'><NavLink className='links searchLink' to='/Search'>Search</NavLink></li>
-            <li className='listItem' id='selectedRandom'><NavLink className='links randomLink' to='/Random'>Don't Even Care!</NavLink></li>
+            <li className='listItem' id='selectedRandom'><NavLink className='links randomLink' to='/Random'>Dont Even Care!</NavLink></li>
           </ul>
-        </div>
+        </div>*/}
         <h1 className="header">Dont even care?</h1>
         <div className="form-container">
           <input type='text' placeholder='City and State OR Zipcode' ref='locationseed'

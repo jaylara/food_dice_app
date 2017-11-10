@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './reset.css';
-import { BrowserRouter as Router, Route, Link, NavLink, Switch } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Search.css';
 import axios from 'axios';
 
@@ -59,7 +59,7 @@ export default class Search extends Component {
         )
      }
      return inputFields || null;
-  }  
+  }
   updateArray(e) {
     //called onBlur of an input field, adds that value to our inputs array
     this.state.inputs.push(e.target.value);
@@ -135,7 +135,7 @@ export default class Search extends Component {
         <div className='searchTypeLinks test9'>
           <ul className='searchTypeLinksList'>
             <li className='listItem' id='selected'><NavLink className='links searchLink' to='/Search'>Search</NavLink></li>
-            <li className='listItem'><NavLink className='links randomLink' to='/Random'>Don't Even Care!</NavLink></li>
+            <li className='listItem'><NavLink className='links randomLink' to='/Random'>Dont Even Care!</NavLink></li>
           </ul>
         </div>
           <h1 className="header">What are you craving?</h1>
@@ -157,7 +157,7 @@ export default class Search extends Component {
             </form>
           </div>
         </div>
-        
+
         )
 
        resultsDisplay = (

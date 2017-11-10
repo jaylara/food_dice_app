@@ -126,7 +126,7 @@ export default class Search extends Component {
   render() {
     let display;
     let resultDisplay = this.saveData;
-    !this.state.hasSearched?
+    (!this.state.hasSearched)?
       display = (
         <div>
           <h1 className="header">What are you craving?</h1>

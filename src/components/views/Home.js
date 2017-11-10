@@ -1,19 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, NavLink, Switch } from 'react-router-dom';
-import { Redirect } from 'react-router';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import OAuthButton from '../account/OAuthButton';
-import UserInfo from '../common/UserInfo';
-import { auth } from '../../utils/firebase';
-import './Home.css';
-import Search from '../results/Search';
-
-import Login from './Login';
 import Header from '../common/Header';
-import ResultForm from '../results/ResultForm.js';
 import SearchTypes from '../views/SearchTypes.js';
-
-
+import './Home.css';
 
 export default class Home extends Component {
   render() {
@@ -27,4 +17,3 @@ export default class Home extends Component {
     );
   }
 }
-
